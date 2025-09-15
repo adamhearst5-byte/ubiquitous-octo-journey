@@ -393,6 +393,37 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Connection lost');
         window.app.handleError(new Error('Internet connection lost'));
     });
+    
+    // Mobile menu functionality
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const filterControls = document.getElementById('filterControls');
+    const viewControls = document.getElementById('viewControls');
+    
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenuToggle.classList.toggle('active');
+            filterControls.classList.toggle('show');
+            viewControls.classList.toggle('show');
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.controls')) {
+                mobileMenuToggle.classList.remove('active');
+                filterControls.classList.remove('show');
+                viewControls.classList.remove('show');
+            }
+        });
+        
+        // Close mobile menu when window is resized to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                mobileMenuToggle.classList.remove('active');
+                filterControls.classList.remove('show');
+                viewControls.classList.remove('show');
+            }
+        });
+    }
 });
 
 // Export for use in other modules
