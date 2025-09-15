@@ -1,0 +1,447 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+header {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ffa500;
+    animation: pulse 2s infinite;
+}
+
+.status-dot.connected {
+    background: #4caf50;
+    animation: none;
+}
+
+.status-dot.disconnected {
+    background: #f44336;
+    animation: none;
+}
+
+.last-update {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Navigation Controls */
+.controls {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.filter-controls, .view-controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+select {
+    padding: 8px 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+    transition: border-color 0.3s;
+}
+
+select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* Button Styles */
+.btn-primary, .btn-secondary {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #f8f9fa;
+    color: #333;
+    border: 2px solid #ddd;
+}
+
+.btn-secondary:hover {
+    background: #e9ecef;
+    border-color: #667eea;
+}
+
+.btn-secondary.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+/* Loading and Error States */
+.loading {
+    text-align: center;
+    padding: 60px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+.error-message {
+    background: #fff3f3;
+    border: 2px solid #f44336;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.error-message h3 {
+    color: #f44336;
+    margin-bottom: 15px;
+}
+
+.no-data {
+    text-align: center;
+    padding: 60px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Race Container Styles */
+.race-container {
+    display: grid;
+    gap: 20px;
+}
+
+.race-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.race-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.race-card.arbitrage-opportunity {
+    border: 3px solid #4caf50;
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(255, 255, 255, 0.95));
+}
+
+.race-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #eee;
+}
+
+.race-info h3 {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.race-time {
+    font-size: 1rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.race-distance {
+    font-size: 0.9rem;
+    color: #888;
+    background: #f0f0f0;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+/* Odds Table */
+.odds-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.odds-table th {
+    background: #f8f9fa;
+    padding: 12px 8px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #dee2e6;
+    font-size: 0.9rem;
+}
+
+.odds-table td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #dee2e6;
+    vertical-align: middle;
+}
+
+.dog-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.trap-number {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    line-height: 24px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.odds-cell {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+    position: relative;
+}
+
+.odds-value {
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: #f8f9fa;
+    transition: all 0.3s;
+}
+
+.odds-value.best-odds {
+    background: #d4edda;
+    color: #155724;
+    border: 2px solid #4caf50;
+    animation: highlight 0.5s ease-in-out;
+}
+
+.odds-value.arbitrage {
+    background: #fff3cd;
+    color: #856404;
+    border: 2px solid #ffc107;
+}
+
+.odds-difference {
+    font-size: 0.8rem;
+    color: #4caf50;
+    font-weight: bold;
+    margin-top: 2px;
+}
+
+/* Trap Colors */
+.trap-1 { background: #ff4444; }
+.trap-2 { background: #4444ff; }
+.trap-3 { background: #ffaa00; }
+.trap-4 { background: #44ff44; }
+.trap-5 { background: #ff44ff; }
+.trap-6 { background: #000000; }
+
+/* Footer */
+footer {
+    margin-top: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    padding: 25px;
+}
+
+.disclaimer {
+    margin-bottom: 20px;
+}
+
+.disclaimer h4 {
+    color: #f44336;
+    margin-bottom: 10px;
+}
+
+.disclaimer ul {
+    list-style-position: inside;
+    color: #666;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+/* Animations */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes highlight {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filter-controls, .view-controls {
+        justify-content: center;
+    }
+    
+    .race-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .odds-table {
+        font-size: 0.8rem;
+    }
+    
+    .odds-table th,
+    .odds-table td {
+        padding: 6px 4px;
+    }
+}
+
+@media (max-width: 480px) {
+    .status-bar {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .filter-controls {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .filter-controls select,
+    .filter-controls button {
+        width: 100%;
+    }
+}

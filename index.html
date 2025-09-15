@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greyhound Odds Comparison - Real-time Betting Exchange vs Bookmakers</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🐕 Greyhound Racing Odds Comparison</h1>
+            <p class="subtitle">Real-time comparison between Betfair Exchange and major bookmakers</p>
+            <div class="status-bar">
+                <div class="status-indicator" id="connectionStatus">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Connecting...</span>
+                </div>
+                <div class="last-update">
+                    Last updated: <span id="lastUpdate">Never</span>
+                </div>
+            </div>
+        </header>
+
+        <nav class="controls">
+            <div class="filter-controls">
+                <select id="trackFilter">
+                    <option value="">All Tracks</option>
+                </select>
+                <select id="timeFilter">
+                    <option value="all">All Times</option>
+                    <option value="next-hour">Next Hour</option>
+                    <option value="next-30min">Next 30 Minutes</option>
+                </select>
+                <button id="refreshBtn" class="btn-primary">Refresh Data</button>
+            </div>
+            <div class="view-controls">
+                <button id="toggleArbitrage" class="btn-secondary">Show Only Arbitrage</button>
+                <button id="toggleLayout" class="btn-secondary">Grid View</button>
+            </div>
+        </nav>
+
+        <main>
+            <div id="loadingIndicator" class="loading">
+                <div class="spinner"></div>
+                <p>Loading real-time odds data...</p>
+            </div>
+
+            <div id="errorMessage" class="error-message hidden">
+                <h3>⚠️ Unable to Load Data</h3>
+                <p id="errorText"></p>
+                <button id="retryBtn" class="btn-primary">Retry</button>
+            </div>
+
+            <div id="raceContainer" class="race-container hidden">
+                <!-- Races will be dynamically inserted here -->
+            </div>
+
+            <div id="noDataMessage" class="no-data hidden">
+                <h3>📅 No Upcoming Races</h3>
+                <p>There are currently no upcoming greyhound races available.</p>
+            </div>
+        </main>
+
+        <footer>
+            <div class="disclaimer">
+                <h4>⚠️ Important Disclaimers</h4>
+                <ul>
+                    <li>Odds are for comparison purposes only and may not reflect real-time bookmaker prices</li>
+                    <li>Always verify odds directly with bookmakers before placing bets</li>
+                    <li>Gambling can be addictive - please bet responsibly</li>
+                    <li>This tool is for educational and research purposes</li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <a href="https://www.begambleaware.org/" target="_blank">BeGambleAware</a>
+                <a href="https://www.gamblingcommission.gov.uk/" target="_blank">Gambling Commission</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/api-handlers.js"></script>
+    <script src="js/ui-components.js"></script>
+    <script src="js/odds-calculator.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
