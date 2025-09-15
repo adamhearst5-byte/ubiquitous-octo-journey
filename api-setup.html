@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Integration Setup - Real-time Betting Odds</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="api-setup-styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">← Back to Demo</a>
+                <h1>🔌 API Integration Setup</h1>
+                <div class="nav-status">
+                    <span id="setupProgress">Step 1 of 6</span>
+                </div>
+            </nav>
+            <p class="subtitle">Step-by-step guide to integrate real Betfair and bookmaker APIs</p>
+        </header>
+
+        <main class="setup-container">
+            <!-- Progress Indicator -->
+            <div class="progress-bar">
+                <div class="progress-steps">
+                    <div class="step active" data-step="1">
+                        <span class="step-number">1</span>
+                        <span class="step-label">Overview</span>
+                    </div>
+                    <div class="step" data-step="2">
+                        <span class="step-number">2</span>
+                        <span class="step-label">Betfair API</span>
+                    </div>
+                    <div class="step" data-step="3">
+                        <span class="step-number">3</span>
+                        <span class="step-label">Bookmakers</span>
+                    </div>
+                    <div class="step" data-step="4">
+                        <span class="step-number">4</span>
+                        <span class="step-label">Configuration</span>
+                    </div>
+                    <div class="step" data-step="5">
+                        <span class="step-number">5</span>
+                        <span class="step-label">Testing</span>
+                    </div>
+                    <div class="step" data-step="6">
+                        <span class="step-number">6</span>
+                        <span class="step-label">Deploy</span>
+                    </div>
+                </div>
+                <div class="progress-line">
+                    <div class="progress-fill" style="width: 16.6%"></div>
+                </div>
+            </div>
+
+            <!-- Step Content Container -->
+            <div class="step-content">
+                
+                <!-- Step 1: Overview -->
+                <div class="step-panel active" id="step-1">
+                    <div class="step-header">
+                        <h2>📋 API Integration Overview</h2>
+                        <p>Learn how to replace mock data with real-time betting APIs</p>
+                    </div>
+                    
+                    <div class="overview-grid">
+                        <div class="api-card">
+                            <div class="api-header">
+                                <h3>🎯 Betfair Exchange API</h3>
+                                <span class="difficulty-badge high">Advanced</span>
+                            </div>
+                            <ul>
+                                <li>Real-time market data</li>
+                                <li>Back/Lay odds</li>
+                                <li>Market liquidity info</li>
+                                <li>Commission calculations</li>
+                            </ul>
+                            <div class="requirements">
+                                <strong>Requirements:</strong>
+                                <ul>
+                                    <li>Betfair Developer Account</li>
+                                    <li>Application Key</li>
+                                    <li>Session Token</li>
+                                    <li>SSL Certificate</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="api-card">
+                            <div class="api-header">
+                                <h3>📊 Bookmaker APIs</h3>
+                                <span class="difficulty-badge medium">Medium</span>
+                            </div>
+                            <ul>
+                                <li>Fixed odds data</li>
+                                <li>Market coverage</li>
+                                <li>Promotional odds</li>
+                                <li>Real-time updates</li>
+                            </ul>
+                            <div class="requirements">
+                                <strong>Supported:</strong>
+                                <ul>
+                                    <li>Sky Bet API</li>
+                                    <li>PaddyPower API</li>
+                                    <li>Betfred API</li>
+                                    <li>Ladbrokes API</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="warning-box">
+                        <h4>⚠️ Important Considerations</h4>
+                        <ul>
+                            <li><strong>Legal Compliance:</strong> Ensure you comply with all terms of service and legal requirements</li>
+                            <li><strong>Rate Limits:</strong> Most APIs have strict rate limiting - respect these limits</li>
+                            <li><strong>Costs:</strong> Some APIs may charge for access or have usage-based pricing</li>
+                            <li><strong>Reliability:</strong> Implement proper error handling and fallback mechanisms</li>
+                            <li><strong>Security:</strong> Never expose API keys in client-side code</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Step 2: Betfair API Setup -->
+                <div class="step-panel" id="step-2">
+                    <div class="step-header">
+                        <h2>🎯 Betfair Exchange API Setup</h2>
+                        <p>Configure the Betfair API for real-time exchange data</p>
+                    </div>
+
+                    <div class="setup-section">
+                        <h3>1. Create Betfair Developer Account</h3>
+                        <div class="instruction-box">
+                            <ol>
+                                <li>Visit <a href="https://developer.betfair.com" target="_blank">developer.betfair.com</a></li>
+                                <li>Register for a developer account</li>
+                                <li>Complete identity verification</li>
+                                <li>Apply for API access</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="setup-section">
+                        <h3>2. Generate Application Key</h3>
+                        <div class="form-group">
+                            <label for="betfairAppKey">Application Key:</label>
+                            <input type="text" id="betfairAppKey" placeholder="Enter your Betfair Application Key" />
+                            <small>Found in your Betfair Developer dashboard</small>
+                        </div>
+                    </div>
+
+                    <div class="setup-section">
+                        <h3>3. Authentication Configuration</h3>
+                        <div class="auth-options">
+                            <div class="auth-method">
+                                <input type="radio" id="authSession" name="authMethod" value="session" checked>
+                                <label for="authSession">
+                                    <h4>Session Token Authentication</h4>
+                                    <p>Simpler setup, tokens expire regularly</p>
+                                </label>
+                                <div class="auth-details">
+                                    <div class="form-group">
+                                        <label for="betfairUsername">Username:</label>
+                                        <input type="text" id="betfairUsername" placeholder="Betfair username" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="betfairPassword">Password:</label>
+                                        <input type="password" id="betfairPassword" placeholder="Betfair password" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="auth-method">
+                                <input type="radio" id="authCert" name="authMethod" value="certificate">
+                                <label for="authCert">
+                                    <h4>Certificate Authentication</h4>
+                                    <p>More secure, requires SSL certificate setup</p>
+                                </label>
+                                <div class="auth-details">
+                                    <div class="form-group">
+                                        <label for="certFile">Certificate File (.p12):</label>
+                                        <input type="file" id="certFile" accept=".p12" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="certPassword">Certificate Password:</label>
+                                        <input type="password" id="certPassword" placeholder="Certificate password" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="test-section">
+                        <h3>4. Test Connection</h3>
+                        <button id="testBetfairConnection" class="btn-primary">Test Betfair API Connection</button>
+                        <div id="betfairTestResult" class="test-result"></div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Bookmaker APIs -->
+                <div class="step-panel" id="step-3">
+                    <div class="step-header">
+                        <h2>📊 Bookmaker API Configuration</h2>
+                        <p>Set up connections to major bookmaker APIs</p>
+                    </div>
+
+                    <div class="bookmaker-apis">
+                        <div class="bookmaker-config">
+                            <h3>Sky Bet API</h3>
+                            <div class="form-group">
+                                <label for="skybetApiKey">API Key:</label>
+                                <input type="text" id="skybetApiKey" placeholder="Sky Bet API Key" />
+                            </div>
+                            <div class="form-group">
+                                <label for="skybetEndpoint">Endpoint URL:</label>
+                                <input type="url" id="skybetEndpoint" placeholder="https://api.skybet.com/api/v1" />
+                            </div>
+                            <button class="btn-test" data-bookmaker="skybet">Test Sky Bet API</button>
+                            <div class="test-result" id="skybetResult"></div>
+                        </div>
+
+                        <div class="bookmaker-config">
+                            <h3>PaddyPower API</h3>
+                            <div class="form-group">
+                                <label for="paddypowerApiKey">API Key:</label>
+                                <input type="text" id="paddypowerApiKey" placeholder="PaddyPower API Key" />
+                            </div>
+                            <div class="form-group">
+                                <label for="paddypowerEndpoint">Endpoint URL:</label>
+                                <input type="url" id="paddypowerEndpoint" placeholder="https://api.paddypower.com/api/v1" />
+                            </div>
+                            <button class="btn-test" data-bookmaker="paddypower">Test PaddyPower API</button>
+                            <div class="test-result" id="paddypowerResult"></div>
+                        </div>
+
+                        <div class="bookmaker-config">
+                            <h3>Betfred API</h3>
+                            <div class="form-group">
+                                <label for="betfredApiKey">API Key:</label>
+                                <input type="text" id="betfredApiKey" placeholder="Betfred API Key" />
+                            </div>
+                            <div class="form-group">
+                                <label for="betfredEndpoint">Endpoint URL:</label>
+                                <input type="url" id="betfredEndpoint" placeholder="https://api.betfred.com/api/v1" />
+                            </div>
+                            <button class="btn-test" data-bookmaker="betfred">Test Betfred API</button>
+                            <div class="test-result" id="betfredResult"></div>
+                        </div>
+
+                        <div class="bookmaker-config">
+                            <h3>Ladbrokes API</h3>
+                            <div class="form-group">
+                                <label for="ladbrokesApiKey">API Key:</label>
+                                <input type="text" id="ladbrokesApiKey" placeholder="Ladbrokes API Key" />
+                            </div>
+                            <div class="form-group">
+                                <label for="ladbrokesEndpoint">Endpoint URL:</label>
+                                <input type="url" id="ladbrokesEndpoint" placeholder="https://api.ladbrokes.com/api/v1" />
+                            </div>
+                            <button class="btn-test" data-bookmaker="ladbrokes">Test Ladbrokes API</button>
+                            <div class="test-result" id="ladbrokesResult"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Configuration -->
+                <div class="step-panel" id="step-4">
+                    <div class="step-header">
+                        <h2>⚙️ Advanced Configuration</h2>
+                        <p>Fine-tune your API integration settings</p>
+                    </div>
+
+                    <div class="config-section">
+                        <h3>Rate Limiting & Caching</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="requestRate">Requests per minute:</label>
+                                <input type="number" id="requestRate" value="60" min="1" max="600" />
+                                <small>Betfair allows 600 req/min, bookmakers vary</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="cacheTimeout">Cache timeout (seconds):</label>
+                                <input type="number" id="cacheTimeout" value="30" min="5" max="300" />
+                                <small>How long to cache odds data</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="config-section">
+                        <h3>Error Handling</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="retryAttempts">Retry attempts:</label>
+                                <input type="number" id="retryAttempts" value="3" min="1" max="10" />
+                            </div>
+                            <div class="form-group">
+                                <label for="retryDelay">Retry delay (ms):</label>
+                                <input type="number" id="retryDelay" value="1000" min="100" max="10000" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" id="fallbackToMock" checked>
+                            <label for="fallbackToMock">Fallback to mock data on API failure</label>
+                        </div>
+                    </div>
+
+                    <div class="config-section">
+                        <h3>Market Selection</h3>
+                        <div class="form-group">
+                            <label for="sportId">Sport ID (Greyhound Racing):</label>
+                            <input type="text" id="sportId" value="4339" readonly />
+                            <small>Betfair sport ID for greyhound racing</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="marketTypes">Market Types:</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" value="WIN" checked> Win</label>
+                                <label><input type="checkbox" value="PLACE"> Place</label>
+                                <label><input type="checkbox" value="FORECAST"> Forecast</label>
+                                <label><input type="checkbox" value="TRICAST"> Tricast</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5: Testing -->
+                <div class="step-panel" id="step-5">
+                    <div class="step-header">
+                        <h2>🧪 API Testing & Validation</h2>
+                        <p>Test your API integrations and validate data quality</p>
+                    </div>
+
+                    <div class="testing-dashboard">
+                        <div class="test-grid">
+                            <div class="test-card">
+                                <h3>Connection Tests</h3>
+                                <div class="test-status">
+                                    <div class="status-item">
+                                        <span class="status-indicator" id="betfairStatus">⚪</span>
+                                        <span>Betfair API</span>
+                                        <span class="status-text" id="betfairStatusText">Not tested</span>
+                                    </div>
+                                    <div class="status-item">
+                                        <span class="status-indicator" id="skybetStatus">⚪</span>
+                                        <span>Sky Bet API</span>
+                                        <span class="status-text" id="skybetStatusText">Not tested</span>
+                                    </div>
+                                    <div class="status-item">
+                                        <span class="status-indicator" id="paddypowerStatus">⚪</span>
+                                        <span>PaddyPower API</span>
+                                        <span class="status-text" id="paddypowerStatusText">Not tested</span>
+                                    </div>
+                                    <div class="status-item">
+                                        <span class="status-indicator" id="betfredStatus">⚪</span>
+                                        <span>Betfred API</span>
+                                        <span class="status-text" id="betfredStatusText">Not tested</span>
+                                    </div>
+                                    <div class="status-item">
+                                        <span class="status-indicator" id="ladbrokesStatus">⚪</span>
+                                        <span>Ladbrokes API</span>
+                                        <span class="status-text" id="ladbrokesStatusText">Not tested</span>
+                                    </div>
+                                </div>
+                                <button id="testAllConnections" class="btn-primary">Test All Connections</button>
+                            </div>
+
+                            <div class="test-card">
+                                <h3>Data Quality Tests</h3>
+                                <div class="test-actions">
+                                    <button id="testMarketData" class="btn-secondary">Test Market Data</button>
+                                    <button id="testOddsFormat" class="btn-secondary">Test Odds Format</button>
+                                    <button id="testRateLimit" class="btn-secondary">Test Rate Limits</button>
+                                </div>
+                                <div id="dataTestResults" class="test-results"></div>
+                            </div>
+
+                            <div class="test-card">
+                                <h3>Performance Tests</h3>
+                                <div class="test-actions">
+                                    <button id="testLatency" class="btn-secondary">Test Latency</button>
+                                    <button id="testThroughput" class="btn-secondary">Test Throughput</button>
+                                    <button id="testReliability" class="btn-secondary">Test Reliability</button>
+                                </div>
+                                <div id="performanceResults" class="test-results"></div>
+                            </div>
+                        </div>
+
+                        <div class="live-test-area">
+                            <h3>Live Data Test</h3>
+                            <p>Test with real market data from your configured APIs</p>
+                            <button id="startLiveTest" class="btn-success">Start Live Test</button>
+                            <div id="liveTestOutput" class="test-output"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6: Deployment -->
+                <div class="step-panel" id="step-6">
+                    <div class="step-header">
+                        <h2>🚀 Deployment & Go Live</h2>
+                        <p>Deploy your API integration to production</p>
+                    </div>
+
+                    <div class="deployment-section">
+                        <h3>Configuration Summary</h3>
+                        <div id="configSummary" class="config-summary">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="deployment-section">
+                        <h3>Environment Setup</h3>
+                        <div class="env-options">
+                            <div class="env-option">
+                                <input type="radio" id="envLocal" name="environment" value="local" checked>
+                                <label for="envLocal">
+                                    <h4>Local Development</h4>
+                                    <p>Test on your local machine</p>
+                                </label>
+                            </div>
+                            <div class="env-option">
+                                <input type="radio" id="envStaging" name="environment" value="staging">
+                                <label for="envStaging">
+                                    <h4>Staging Environment</h4>
+                                    <p>Test in a production-like environment</p>
+                                </label>
+                            </div>
+                            <div class="env-option">
+                                <input type="radio" id="envProduction" name="environment" value="production">
+                                <label for="envProduction">
+                                    <h4>Production Deployment</h4>
+                                    <p>Go live with real users</p>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="deployment-section">
+                        <h3>Security Considerations</h3>
+                        <div class="security-checklist">
+                            <label><input type="checkbox" id="secureStorage"> Secure API key storage (environment variables)</label>
+                            <label><input type="checkbox" id="httpsOnly"> HTTPS-only communication</label>
+                            <label><input type="checkbox" id="rateLimiting"> Rate limiting implemented</label>
+                            <label><input type="checkbox" id="errorHandling"> Proper error handling</label>
+                            <label><input type="checkbox" id="logging"> Logging and monitoring</label>
+                        </div>
+                    </div>
+
+                    <div class="deployment-actions">
+                        <button id="generateConfig" class="btn-primary">Generate Configuration File</button>
+                        <button id="downloadConfig" class="btn-secondary" disabled>Download Config</button>
+                        <button id="deployToProduction" class="btn-success" disabled>Deploy to Production</button>
+                    </div>
+
+                    <div class="success-message" id="deploymentSuccess" style="display: none;">
+                        <h3>🎉 Deployment Successful!</h3>
+                        <p>Your API integration is now live. Monitor the performance and be ready to handle any issues.</p>
+                        <a href="index.html" class="btn-primary">Go to Live Application</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Controls -->
+            <div class="nav-controls">
+                <button id="prevStep" class="btn-secondary" disabled>← Previous</button>
+                <button id="nextStep" class="btn-primary">Next →</button>
+            </div>
+        </main>
+
+        <footer>
+            <div class="disclaimer">
+                <h4>⚠️ Important Legal & Technical Disclaimers</h4>
+                <ul>
+                    <li>Ensure compliance with all API terms of service and legal requirements</li>
+                    <li>API access may require business licenses and regulatory approval</li>
+                    <li>This tool is for educational purposes - consult legal experts for commercial use</li>
+                    <li>Always implement proper security measures for API credentials</li>
+                    <li>Monitor API usage to avoid exceeding rate limits and incurring charges</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Include existing scripts -->
+    <script src="js/api-handlers.js"></script>
+    <script src="js/odds-calculator.js"></script>
+    
+    <!-- New API setup specific script -->
+    <script src="js/api-setup.js"></script>
+</body>
+</html>
