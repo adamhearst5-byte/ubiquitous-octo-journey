@@ -24,7 +24,13 @@
         </header>
 
         <nav class="controls">
-            <div class="filter-controls">
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <div class="filter-controls" id="filterControls">
                 <select id="trackFilter">
                     <option value="">All Tracks</option>
                 </select>
@@ -33,12 +39,24 @@
                     <option value="next-hour">Next Hour</option>
                     <option value="next-30min">Next 30 Minutes</option>
                 </select>
-                <button id="refreshBtn" class="btn-primary">Refresh Data</button>
+                <button id="refreshBtn" class="btn-primary">
+                    <span class="btn-icon">🔄</span>
+                    <span class="btn-text">Refresh Data</span>
+                </button>
             </div>
-            <div class="view-controls">
-                <button id="toggleArbitrage" class="btn-secondary">Show Only Arbitrage</button>
-                <button id="toggleLayout" class="btn-secondary">Grid View</button>
-                <a href="api-setup.html" class="btn-api-setup">🔌 Setup Real APIs</a>
+            <div class="view-controls" id="viewControls">
+                <button id="toggleArbitrage" class="btn-secondary">
+                    <span class="btn-icon">💰</span>
+                    <span class="btn-text">Show Only Arbitrage</span>
+                </button>
+                <button id="toggleLayout" class="btn-secondary">
+                    <span class="btn-icon">⊞</span>
+                    <span class="btn-text">Grid View</span>
+                </button>
+                <a href="api-setup.html" class="btn-api-setup">
+                    <span class="btn-icon">🔌</span>
+                    <span class="btn-text">Setup Real APIs</span>
+                </a>
             </div>
         </nav>
 
