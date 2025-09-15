@@ -155,6 +155,28 @@ select:focus {
     border-color: #667eea;
 }
 
+.btn-api-setup {
+    background: linear-gradient(45deg, #4facfe, #00f2fe);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-api-setup:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
+    text-decoration: none;
+    color: white;
+}
+
 /* Loading and Error States */
 .loading {
     text-align: center;
