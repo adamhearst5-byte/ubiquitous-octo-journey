@@ -174,6 +174,19 @@ python -m http.server 8000
 open http://localhost:8000
 ```
 
+### API Integration Setup
+The application now includes a comprehensive API integration wizard accessible via the "🔌 Setup Real APIs" button in the main interface. This step-by-step walkthrough helps you:
+
+1. **Configure Betfair Exchange API** - Set up application keys and authentication
+2. **Add Bookmaker APIs** - Integrate with Sky Bet, PaddyPower, Betfred, and Ladbrokes
+3. **Optimize Settings** - Configure rate limiting, caching, and error handling
+4. **Test Connections** - Validate API connectivity and data quality
+5. **Deploy Safely** - Security checklist and environment configuration
+
+To access the setup wizard:
+- Click "🔌 Setup Real APIs" in the main application
+- Or visit `api-setup.html` directly
+
 ### Configuration
 The application can be configured by modifying constants in `js/main.js`:
 
@@ -189,6 +202,7 @@ this.config = {
 1. Add API endpoint to `api-handlers.js`
 2. Update odds table structure in `ui-components.js`
 3. Include in arbitrage calculations in `odds-calculator.js`
+4. Add configuration section to `api-setup.html`
 
 ## 📱 Mobile Optimization
 
@@ -230,7 +244,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Contributions are welcome! Please read our contributing guidelines and submit pull requests for any improvements.
 
 ### Development Priorities
-1. **Real API Integration**: Replace mock data with live APIs
+1. ✅ **API Integration Wizard**: Step-by-step setup for real Betfair and bookmaker APIs
 2. **Advanced Analytics**: More sophisticated market analysis
 3. **Historical Data**: Track odds movements over time
 4. **Mobile App**: Native iOS/Android applications
